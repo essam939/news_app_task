@@ -1,7 +1,9 @@
 
+import 'package:intl/intl.dart';
+
 class NewsResponse {
   final Source source;
-  final String? author;
+  final String author;
   final String title;
   final String? description;
   final String url;
@@ -11,7 +13,7 @@ class NewsResponse {
 
   NewsResponse({
     required this.source,
-    this.author,
+    required this.author,
     required this.title,
     this.description,
     required this.url,
@@ -23,12 +25,12 @@ class NewsResponse {
   factory NewsResponse.fromJson(Map<String, dynamic> json) {
     return NewsResponse(
       source: Source.fromJson(json['source'] as Map<String, dynamic>),
-      author: json['author'] as String?,
+      author: json['author']?? 'NA',
       title: json['title'] as String,
       description: json['description'] as String?,
       url: json['url'] as String,
       urlToImage: json['urlToImage'] ?? 'https://cdn2.iconfinder.com/data/icons/vivid/48/image-512.png',
-      publishedAt: json['publishedAt'] as String,
+      publishedAt:DateFormat('dd/MM/yyyy').format(DateTime.parse(json['publishedAt'])),
       content: json['content'] as String?,
     );
   }
@@ -46,7 +48,7 @@ class Source {
   factory Source.fromJson(Map<String, dynamic> json) {
     return Source(
       id: json['id'] as String?,
-      name: json['name'] as String,
+      name: json['name']??'NA',
     );
   }
 }

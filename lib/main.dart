@@ -5,7 +5,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:news/core/service/remote/service_locator.dart';
 import 'package:news/features/news/presentation/pages/home_screen.dart';
 
-import 'features/news/presentation/controller/news_cubit.dart';
+import 'features/news/presentation/controller/news/news_cubit.dart';
 
 void main() {
   ServiceLocator.init();

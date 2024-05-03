@@ -9,7 +9,7 @@ class ErrorMessageModel extends Equatable {
 
   factory ErrorMessageModel.fromJson(Map<String, dynamic> json) {
     return ErrorMessageModel(
-      msg: json["msg"] as String,
+      msg: json["message"] as String,
     );
   }
 
