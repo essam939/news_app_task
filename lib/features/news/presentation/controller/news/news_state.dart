@@ -8,6 +8,7 @@ abstract class NewsState extends Equatable {
 class NewsInitial extends NewsState {}
 
 class NewsLoading extends NewsState {}
+class NewsPagination extends NewsState {}
 
 class NewsLoaded extends NewsState {
   final List<NewsResponse> newsResponse;

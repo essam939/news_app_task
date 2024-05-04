@@ -51,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onLoading() async{
     // monitor network fetch
+    context.read<NewsCubit>().getCategories(NewsRequest( page:  context.read<NewsCubit>().page+1));
     await Future.delayed(Duration(milliseconds: 1000));
     // if failed,use loadFailed(),if no data return,use LoadNodata()
     if(mounted)
@@ -129,8 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state is NewsLoaded) {
-                final news = state.newsResponse;
+              } else if (state is NewsLoaded|| state is NewsPagination) {
+                final news =context.read<NewsCubit>().newsList;
                 return Expanded(
                   child: SmartRefresher(
                     enablePullDown: true,

@@ -10,12 +10,28 @@ part 'news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
   final GetNewsUseCase getNewsUseCase;
+  List<NewsResponse> newsList = [];
+  int page = 1;
+
   NewsCubit({required this.getNewsUseCase}) : super(NewsInitial());
+
   Future<void> getCategories(NewsRequest newsRequest) async {
-    emit(NewsLoading());
+    if (newsRequest.page == 1) {
+      emit(NewsLoading());
+    } else {
+      emit(NewsPagination());
+    }
     final result = await getNewsUseCase.execute(newsRequest);
     result.fold(
-            (failure) => emit(NewsError(errorMessage: failure.errorMessageModel)),
-            (response) => emit(NewsLoaded( newsResponse: response)));
+      (failure) => emit(NewsError(errorMessage: failure.errorMessageModel)),
+      (response) {
+        if (newsRequest.page == 1&& response.isNotEmpty) {
+          newsList = response;
+        } else {
+          newsList.addAll(response);
+        }
+        emit(NewsLoaded(newsResponse: newsList));
+      },
+    );
   }
 }
