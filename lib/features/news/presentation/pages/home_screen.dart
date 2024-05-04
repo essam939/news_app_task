@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news/core/service/remote/service_locator.dart';
 import 'package:news/core/widget_life_cycle_listener.dart';
+import 'package:news/features/news/domain/entities/newa_request.dart';
 import 'package:news/features/news/domain/entities/news_response.dart';
 import 'package:news/features/news/presentation/controller/news/news_cubit.dart';
 import 'package:news/features/news/presentation/pages/news_details.dart';
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   void _onRefresh() async{
     // monitor network fetch
-    context.read<NewsCubit>().getCategories();
+    context.read<NewsCubit>().getCategories(NewsRequest( page: 1));
     await Future.delayed(Duration(milliseconds: 1000));
     // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<NewsCubit>().getCategories();
+    context.read<NewsCubit>().getCategories(NewsRequest( page: 1));
     // Initialize with no category selected
     selectedCategoryId = 0;
   }
@@ -90,9 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
               } else if (state is NewsLoaded) {
                 if (selectedCategoryId == 0) {
                   selectedCategoryId = categoriesList.first.id;
-                  // productCubit.getProducts(ProductsRequest(
-                  //     categoryId: state.categoriesResponse.first.id,
-                  //     branchId: widget.branchId));
                 }
                 // Update products when a category is selected
                 return SingleChildScrollView(
@@ -107,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               setState(() {
                                 selectedCategoryId = category.id;
                               });
+                              context.read<NewsCubit>().getCategories(NewsRequest(page: 1,category: category.name));
                             },
                           ),
                         )
