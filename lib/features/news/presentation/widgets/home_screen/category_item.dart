@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/features/news/presentation/widgets/categories_data.dart';
+import 'package:news/features/news/presentation/widgets/home_screen/categories_data.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category categoryItem;

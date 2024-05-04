@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/features/news/domain/entities/newa_request.dart';
 import 'package:news/features/news/presentation/controller/categories/categories_cubit.dart';
 import 'package:news/features/news/presentation/controller/news/news_cubit.dart';
-import 'package:news/features/news/presentation/widgets/categories_data.dart';
-import 'package:news/features/news/presentation/widgets/categories_widget.dart';
-import 'package:news/features/news/presentation/widgets/news_list_widget.dart';
+import 'package:news/features/news/presentation/widgets/home_screen/categories_data.dart';
+import 'package:news/features/news/presentation/widgets/home_screen/categories_widget.dart';
+import 'package:news/features/news/presentation/widgets/home_screen/news_list_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

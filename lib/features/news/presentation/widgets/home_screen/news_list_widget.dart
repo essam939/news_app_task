@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/features/news/domain/entities/newa_request.dart';
 import 'package:news/features/news/presentation/controller/categories/categories_cubit.dart';
 import 'package:news/features/news/presentation/controller/news/news_cubit.dart';
-import 'package:news/features/news/presentation/widgets/categories_data.dart';
-import 'package:news/features/news/presentation/widgets/product_item.dart';
+import 'package:news/features/news/presentation/widgets/home_screen/categories_data.dart';
+import 'package:news/features/news/presentation/widgets/home_screen/product_item.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class NewsListWidget extends StatelessWidget {
