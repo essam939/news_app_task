@@ -1,6 +1,15 @@
 part of 'categories_cubit.dart';
 
-@immutable
-sealed class CategoriesState {}
+// Define the events
+abstract class SelectedCategoryEvent {}
 
-final class CategoriesInitial extends CategoriesState {}
+class SetCategory extends SelectedCategoryEvent {
+  final int categoryId;
+  SetCategory(this.categoryId);
+}
+
+// Define the state
+class SelectedCategoryState {
+  final int categoryId;
+  SelectedCategoryState(this.categoryId);
+}

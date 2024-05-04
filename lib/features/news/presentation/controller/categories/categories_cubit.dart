@@ -1,8 +1,12 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'categories_state.dart';
 
-class CategoriesCubit extends Cubit<CategoriesState> {
-  CategoriesCubit() : super(CategoriesInitial());
+class SelectedCategoryCubit extends Cubit<SelectedCategoryState> {
+  SelectedCategoryCubit() : super(SelectedCategoryState(0));
+
+  void setCategory(int categoryId) {
+    emit(SelectedCategoryState(categoryId));
+  }
 }
+

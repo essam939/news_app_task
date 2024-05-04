@@ -6,6 +6,7 @@ import 'package:news/features/news/data/data_sources/news_remote_data_source.dar
 import 'package:news/features/news/data/repositories/news_repository.dart';
 import 'package:news/features/news/domain/repositories/base_news_repository.dart';
 import 'package:news/features/news/domain/use_cases/get_news_usecase.dart';
+import 'package:news/features/news/presentation/controller/categories/categories_cubit.dart';
 import 'package:news/features/news/presentation/controller/news/news_cubit.dart';
 
 import 'api_consumer.dart';
@@ -16,6 +17,7 @@ mixin ServiceLocator {
   static void init() {
     // bloc
     instance.registerLazySingleton(() => NewsCubit(getNewsUseCase: instance()));
+    instance.registerLazySingleton(() => SelectedCategoryCubit());
 
     // use cases
     instance.registerLazySingleton(() => GetNewsUseCase(instance()));

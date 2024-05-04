@@ -5,6 +5,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:news/core/service/remote/service_locator.dart';
 import 'package:news/features/news/presentation/pages/home_screen.dart';
 
+import 'features/news/presentation/controller/categories/categories_cubit.dart';
 import 'features/news/presentation/controller/news/news_cubit.dart';
 
 void main() {
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
             BlocProvider<NewsCubit>(
               create: (_) => ServiceLocator.instance<NewsCubit>(),
             ),
+            BlocProvider<SelectedCategoryCubit>(
+              create: (_) => ServiceLocator.instance<SelectedCategoryCubit>(),
+            ),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -37,7 +41,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      child:   LoaderOverlay(child: HomeScreen()),
+      child:   const LoaderOverlay(child: HomeScreen()),
     );
   }
 }
